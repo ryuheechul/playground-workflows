@@ -13,12 +13,16 @@ jobs:
   call-action:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout playground-workflows
+      # Checkout the caller repository so it can perform work on its own source code.
+      # Note: Previously we tried checking out playground-workflows here
+      # (see commit https://github.com/ryuheechul/playground-workflows/commit/43ab3e4),
+      # but that broke the caller repo context since callers need their own source code.
+      # Thus, we check out the caller repo and reference the local action via remote syntax.
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          repository: ryuheechul/playground-workflows
 
-      - name: Run local hello action
-        uses: ./.github/actions/hello
+      - name: Run local action
+        # referenced as remote from caller perspective
+        uses: ryuheechul/playground-workflows/.github/actions/hello@main
         with:
           who: ${{ inputs.who }}
