@@ -19,7 +19,7 @@ jobs:
       # but that broke the caller repo context since callers need their own source code.
       # Thus, we check out the caller repo and reference the local action via remote syntax.
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Run local action
         # referenced as remote from caller perspective
