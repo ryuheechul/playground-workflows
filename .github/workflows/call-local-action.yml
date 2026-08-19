@@ -13,8 +13,10 @@ jobs:
   call-action:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout playground-workflows
         uses: actions/checkout@v4
+        with:
+          repository: ryuheechul/playground-workflows
 
       - name: Run local hello action
         uses: ./.github/actions/hello
