@@ -22,7 +22,13 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Run local action
-        # referenced as remote from caller perspective
+        # NOTE:
+        # - Referenced as if it's a remote (because it actually is remote from caller's perspective)
+        #   instead of local relative like `uses: ./.github/actions/hello`
+        #   - Because GitHub Actions doesn't support dynamic self-referencing
+        #     that survives in caller's execution context.
+        #     - Therefore hardcoded owner/repo is required.
+        #       - WARN: Which mean this can break if the repository is renamed.
         uses: ryuheechul/playground-workflows/.github/actions/hello@main
         with:
           who: ${{ inputs.who }}
