@@ -1,4 +1,7 @@
+# A reusable workflow that calls a local composite action.
 name: 'A reusable workflow that calls a local composite action'
+
+# NOTE: For slighly more involved example, see ./call-multi-file-actions.yml
 
 on:
   workflow_call:

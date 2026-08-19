@@ -1,3 +1,4 @@
+# A simple reusable hello world workflow.
 name: 'A simple reusable hello world workflow'
 
 on:

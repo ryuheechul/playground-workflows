@@ -1,0 +1,13 @@
+name: 'Multi-File Action'
+description: 'An action composed of multiple files (action.yml + greet.sh)'
+inputs:
+  message:
+    description: 'Message to pass to script'
+    required: false
+    default: 'Default Message'
+runs:
+  using: 'composite'
+  steps:
+    - name: Run companion script
+      shell: bash
+      run: bash ${{ github.action_path }}/greet.sh "${{ inputs.message }}"

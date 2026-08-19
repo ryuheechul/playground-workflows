@@ -1,0 +1,13 @@
+name: 'Multi-File JS Action'
+description: 'A multi-file JavaScript action using Node.js'
+inputs:
+  message:
+    description: 'Message to pass'
+    required: false
+    default: 'Default JS'
+outputs:
+  result:
+    description: 'Result output'
+runs:
+  using: 'node24'
+  main: 'index.js'

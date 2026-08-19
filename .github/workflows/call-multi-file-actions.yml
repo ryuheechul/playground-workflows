@@ -1,0 +1,33 @@
+# A reusable workflow that calls both multi-file composite and JS actions.
+name: 'Call Multi-File Actions Workflow'
+
+# NOTE: This extends `./call-local-action.yml` and calls actions that contain other files too
+# not just `action.yml`.
+
+on:
+  workflow_call:
+    inputs:
+      message:
+        description: 'Message to pass'
+        required: false
+        type: string
+        default: 'Hello from workflow'
+
+jobs:
+  call-multi-file-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Run multi-file composite action
+        # See ./call-local-action.yml for the context on the absolute path.
+        uses: ryuheechul/playground-workflows/.github/actions/multi-file@main
+        with:
+          message: ${{ inputs.message }}
+
+      - name: Run multi-file JS action
+        # See ./call-local-action.yml for the context on the absolute path.
+        uses: ryuheechul/playground-workflows/.github/actions/multi-file-js@main
+        with:
+          message: ${{ inputs.message }}
