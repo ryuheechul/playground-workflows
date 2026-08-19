@@ -1,0 +1,22 @@
+name: 'A reusable workflow that calls a local composite action'
+
+on:
+  workflow_call:
+    inputs:
+      who:
+        description: 'Who to greet via action'
+        required: false
+        type: string
+        default: 'World'
+
+jobs:
+  call-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run local hello action
+        uses: ./.github/actions/hello
+        with:
+          who: ${{ inputs.who }}
