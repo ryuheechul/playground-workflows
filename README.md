@@ -4,4 +4,5 @@
 
 ## Related Repositories
 
-- An example caller repository: [playground-actions](https://github.com/ryuheechul/playground-actions)
+- An example caller repository: [playground-actions](https://github.com/ryuheechul/playground-actions).
+  - via [this action](https://github.com/ryuheechul/playground-actions/actions/workflows/reuse-playground-workflows.yml)
