@@ -1,0 +1,28 @@
+# A workflow that calls all actions in the same repository using the new $/ syntax.
+name: 'Call Actions with Dollar Syntax'
+
+# NOTE: See https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#example-using-an-action-in-the-same-repository-as-the-workflow-at-the-running-commit-recommended
+
+# INFO: Looking for dollar syntax for Workflows? ./call-workflows-with-dollar-syntax.yml
+
+on:
+  workflow_call: {}
+
+jobs:
+  run-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run hello action
+        uses: $/.github/actions/hello
+        with:
+          who: 'Dollar Syntax User'
+
+      - name: Run multi-file composite action
+        uses: $/.github/actions/multi-file
+        with:
+          message: 'Hello from composite action via $/'
+
+      - name: Run multi-file JS action
+        uses: $/.github/actions/multi-file-js
+        with:
+          message: 'Hello from JS action via $/'

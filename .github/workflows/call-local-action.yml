@@ -33,5 +33,8 @@ jobs:
         #     - Therefore hardcoded owner/repo is required.
         #       - WARN: Which mean this can break if the repository is renamed.
         uses: ryuheechul/playground-workflows/.github/actions/hello@main
+        # INFO:
+        # - The above comment about hardcoded owner/repo being required is not technically correct now that GitHub supports the new $/ syntax.
+        # - So, you can use the new $/ syntax (e.g., `uses: $/.github/actions/hello)` for actions in the same repository without needing checkout. See ./call-actions-with-dollar-syntax.yml.
         with:
           who: ${{ inputs.who }}
