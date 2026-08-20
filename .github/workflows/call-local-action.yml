@@ -16,14 +16,6 @@ jobs:
   call-action:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the caller repository so it can perform work on its own source code.
-      # Note: Previously we tried checking out playground-workflows here
-      # (see commit https://github.com/ryuheechul/playground-workflows/commit/43ab3e4),
-      # but that broke the caller repo context since callers need their own source code.
-      # Thus, we check out the caller repo and reference the local action via remote syntax.
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
       - name: Run local action
         # NOTE:
         # - Referenced as if it's a remote (because it actually is remote from caller's perspective)
@@ -34,7 +26,12 @@ jobs:
         #       - WARN: Which mean this can break if the repository is renamed.
         uses: ryuheechul/playground-workflows/.github/actions/hello@main
         # INFO:
-        # - The above comment about hardcoded owner/repo being required is not technically correct now that GitHub supports the new $/ syntax.
-        # - So, you can use the new $/ syntax (e.g., `uses: $/.github/actions/hello)` for actions in the same repository without needing checkout. See ./call-actions-with-dollar-syntax.yml.
+        # - The above comment about hardcoded owner/repo being required is not technically
+        #   correct now that GitHub supports the new `$/` syntax (except for GHES).
+        # - So, you can use the new `$/` syntax (e.g., `uses: $/.github/actions/hello`) for actions
+        #   in the same repository without needing:
+        #   - hardcoding (e.g., `uses: {owner}/{repo}/.github/actions/hello`)
+        #   - or checking the repo with relative (e.g., `uses: ./.github/actions/hello`)
+        # - See `./call-actions-with-dollar-syntax.yml` for an example.
         with:
           who: ${{ inputs.who }}

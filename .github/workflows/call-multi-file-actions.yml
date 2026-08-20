@@ -17,9 +17,6 @@ jobs:
   call-multi-file-actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
       - name: Run multi-file composite action
         # See ./call-local-action.yml for the context on the absolute path.
         uses: ryuheechul/playground-workflows/.github/actions/multi-file@main
